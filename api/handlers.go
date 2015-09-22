@@ -239,7 +239,7 @@ func getContainersJSON(c *context, w http.ResponseWriter, r *http.Request) {
 		}
 
 		// Apply filters.
-		if !filters.Match("name", strings.TrimPrefix(container.Names[0], "/")) {
+		if len(container.Names) > 0 && !filters.Match("name", strings.TrimPrefix(container.Names[0], "/")) {
 			continue
 		}
 		if !filters.Match("id", container.Id) {
